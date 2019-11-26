@@ -4,17 +4,12 @@ import h5py
 import os
 import numpy as np
 import cv2
-import argparse
 
 # Current python dir path
 dir_path = os.path.dirname(os.path.realpath('__file__'))
 
 img_folder_path = "/Users/amlan/Desktop/leftImg8bit_trainvaltest/leftImg8bit/"
 gt_folder_path = "/Users/amlan/Desktop/gtFine_trainvaltest/gtFine/"
-
-# Use only 3 classes.
-# labels = ['background', 'person', 'car', 'road']
-
 
 # Reads paths from cityscape data.
 def get_data(mode, num):
@@ -34,7 +29,8 @@ def get_data(mode, num):
         for x_path in x_paths:
             y_paths.append(tmp_gt_folder_path + x_path[idx:-15] + 'gtFine_labelIds.png')
 
-        return x_paths[:num], y_paths[:num]
+        # return x_paths[:num], y_paths[:num]
+        return x_paths, y_paths
     else:
         print("Please call get_data function with arg 'train', 'val', 'test'.")
 
@@ -80,11 +76,11 @@ def make_h5py():
     print('Finish.')
 
     print('Parsing val datas...' + str(len(x_val_paths)))
-    write_data(h5py_file, 'val', x_val_paths[:200], y_val_paths[:200])
+    write_data(h5py_file, 'val', x_val_paths, y_val_paths)
     print('Finish.')
 
     print('Parsing test datas...' + str(len(x_test_paths)))
-    write_data(h5py_file, 'test', x_val_paths[200:], y_val_paths[200:])
+    write_data(h5py_file, 'test', x_test_paths, y_test_paths)
     print('Finish.')
 
 
