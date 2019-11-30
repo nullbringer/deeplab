@@ -1,0 +1,9 @@
+Quiz
+----
+Which convolution is used for feature extraction in DeepLab models?
+1) Flattened Convolution
+2) Shuffled Grouped Convolution
+3) Spatial and Cross-Channel convolutions
+4) Atrous convolution 
+
+Ans: Atrous convolution 
